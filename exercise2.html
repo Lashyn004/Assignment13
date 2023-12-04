@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Rendering with Vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <link rel="stylesheet" href="styles/Style2.css">
+</head>
+
+<body>
+
+    <div id="app">
+        <h2>List of Clothes</h2>
+        <ul>
+            <li v-for="(clothing, index) in clothes" :key="index">
+                {{ clothing }}
+                <button @click="removeItem(index)">Remove</button>
+            </li>
+        </ul>
+        <div>
+            <input v-model="newItem" placeholder="Add new clothing">
+            <button @click="addItem">Add</button>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                clothes: ['T-shirt', 'Jeans', 'Sweater'],
+                newItem: ''
+            },
+            methods: {
+                addItem: function () {
+                    if (this.newItem.trim() !== '') {
+                        this.clothes.push(this.newItem.trim());
+                        this.newItem = '';
+                    }
+                },
+                removeItem: function (index) {
+                    this.clothes.splice(index, 1);
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional Rendering Exercise</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <link rel="stylesheet" href="styles/Style5.css">
+</head>
+
+<body>
+
+    <div id="app">
+        <h2>Task List</h2>
+
+        <div>
+            <label>Add New Task:</label>
+            <input type="text" v-model="newTask">
+            <button @click="addTask">Add Task</button>
+        </div>
+
+        <ul>
+            <li v-for="(task, index) in tasks" :key="index" :class="{ 'completed-task': task.completed }">
+                <input type="checkbox" v-model="task.completed">
+                {{ task.title }}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                newTask: '',
+                tasks: [
+                    { title: 'Assignment_9', completed: false },
+                    { title: 'Assignment_10', completed: true },
+                    { title: 'Assignment_11', completed: false }
+                ]
+            },
+            methods: {
+                addTask() {
+                    if (this.newTask.trim() !== '') {
+                        this.tasks.push({ title: this.newTask, completed: false });
+                        this.newTask = '';
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling and Two-Way Binding with Vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <link rel="stylesheet" href="styles/Style3.css">
+</head>
+
+<body>
+
+    <div id="app">
+        <img src="images/SON.jpeg" alt="" width="300px">
+        <h2>Enter username bro</h2>
+        <input v-model="username" placeholder="Enter your username">
+        <p v-if="username !== ''">Hello, {{ username }}!</p>
+        <button @click="resetUsername">Reset Username</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                username: ''
+            },
+            methods: {
+                resetUsername: function () {
+                    this.username = 'Son';
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
